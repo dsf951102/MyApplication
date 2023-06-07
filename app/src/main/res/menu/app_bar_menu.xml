@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/finace"
+        android:icon="@drawable/baseline_account_balance_wallet_24"
+        android:title="@string/finanza"
+        android:contentDescription="@string/presione_para_ir_a_la_pantalla_de_gesti_n_de_las_finazas"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/baseline_info_24"
+        android:title="@string/acerca"
+        android:contentDescription="@string/presione_para_ver_informacion_sobre_la_app"
+        app:showAsAction="ifRoom"/>
+
+</menu>

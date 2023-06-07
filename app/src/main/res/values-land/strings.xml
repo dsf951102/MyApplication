@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="creador_de_trabajos">Creador de trabajos</string>
+    <string name="presione_para_ver_informacion_sobre_la_app">Presione para ver informacion sobre la APP</string>
+    <string name="presione_para_ir_a_la_pantalla_de_gesti_n_de_las_finazas">Presione para ir a la pantalla de gestión de las finazas</string>
+    <string name="acerca">Acerca</string>
+    <string name="finanza">Finanza</string>
+</resources>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Work Control Plans &amp; Finance</string>
+    <string name="title_home">Economia</string>
+    <string name="title_dashboard">Eventos</string>
+    <string name="title_notifications">Algo más</string>
+    <string name="fab_para_creacion_de_eventos">fab para creacion de eventos</string>
+    <string name="work_control_plans_finance"><![CDATA[Work Control Plans & Finance]]></string>
+    <string name="esta_app_fue_desarrollada_para_la_gesti_n_y_el_control_de_trabajos_del_negocio_de_lisandro">Esta APP fue desarrollada para la gestión y el control de trabajos del negocio de Lisandro.</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="creador_de_trabajos">Creador de trabajos</string>
+    <string name="presione_para_ver_informacion_sobre_la_app">Presione para ver informacion sobre la APP</string>
+    <string name="presione_para_ir_a_la_pantalla_de_gesti_n_de_las_finazas">Presione para ir a la pantalla de gestión de las finazas</string>
+    <string name="acerca">Acerca</string>
+    <string name="finanza">Finanza</string>
+</resources>
