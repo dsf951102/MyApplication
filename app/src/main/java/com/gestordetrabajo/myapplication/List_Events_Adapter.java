@@ -18,6 +18,7 @@ public class List_Events_Adapter extends RecyclerView.Adapter<List_Events_Adapte
         this.items = items;
     }
 
+    @NonNull
     @Override
     public List_Events_AdapterVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
@@ -29,9 +30,7 @@ public class List_Events_Adapter extends RecyclerView.Adapter<List_Events_Adapte
     public void onBindViewHolder(@NonNull List_Events_AdapterVH holder, int position) {
 
         holder.name.setText(items.get(position).getName());
-        holder.description.setText(items.get(position).description);
-        holder.sesion.setText(items.get(position).sesion);
-        holder.hora.setText(items.get(position).hora);
+
 
     }
 

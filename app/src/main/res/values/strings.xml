@@ -18,4 +18,10 @@
     <string name="presione_para_ir_a_la_pantalla_de_gesti_n_de_las_finazas">Presione para ir a la pantalla de gestión de las finazas</string>
     <string name="acerca">Acerca</string>
     <string name="finanza">Finanza</string>
+    <string name="a_adir">Añadir</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="presione_para_escribir_el_nombre_de_la_persona">Presione para escribir el nombre de la persona</string>
+    <string name="evento_para">Evento para:</string>
+    <string name="fecha">fecha</string>
+    <string name="nombre">Nombre</string>
 </resources>

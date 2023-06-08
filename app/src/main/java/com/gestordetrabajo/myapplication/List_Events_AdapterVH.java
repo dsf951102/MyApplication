@@ -11,17 +11,14 @@ import com.applikeysolutions.cosmocalendar.view.CalendarView;
 public class List_Events_AdapterVH extends RecyclerView.ViewHolder {
 
 
-    TextView name, description, sesion, hora;
+    TextView name;
     private List_Events_Adapter adapter;
-    CalendarView calendarView;
+
 
     public List_Events_AdapterVH(@NonNull View itemView) {
         super(itemView);
 
         name = itemView.findViewById(R.id.cliente_tv_name);
-        description = itemView.findViewById(R.id.description_tv);
-        sesion = itemView.findViewById(R.id.sesion_tv);
-        hora = itemView.findViewById(R.id.hora_tv);
         itemView.findViewById(R.id.btn_modificar_trabajo).setOnClickListener(view -> {
 
         });

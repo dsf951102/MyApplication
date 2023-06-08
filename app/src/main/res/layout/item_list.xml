@@ -7,68 +7,57 @@
     android:id="@+id/card_view"
     android:layout_margin="3dp"
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/cliente_tv_name"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@color/md_theme_dark_inversePrimary"/>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cliente"
-            android:textSize="18sp"
-            android:layout_marginStart="8dp"/>
-        <TextView
-            android:id="@+id/description_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripción del trabajo"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"/>
-        <TextView
-            android:id="@+id/sesion_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sesión"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"/>
-        <TextView
-            android:id="@+id/hora_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hora"
-            android:textSize="14sp"
-            android:layout_marginStart="8dp"/>
+            android:orientation="vertical">
 
-         <LinearLayout
 
-             android:orientation="horizontal"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
-
-             <com.google.android.material.button.MaterialButton
-                 android:id="@+id/btn_modificar_trabajo"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginStart="8dp"
-                 style="?attr/borderlessButtonStyle"
-                 android:text="Modificar"
-                 />
-
-             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_eliminar_trabajo"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/cliente_tv_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                 style="?attr/borderlessButtonStyle"
-                 android:text="Eliminar"/>
+                android:text="Cliente"
+                android:textSize="18sp"
+                android:layout_marginStart="8dp"/>
 
 
-         </LinearLayout>
+            <LinearLayout
 
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_modificar_trabajo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    style="?attr/borderlessButtonStyle"
+                    android:text="Modificar"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_eliminar_trabajo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    style="?attr/borderlessButtonStyle"
+                    android:text="Eliminar"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
+
 
 </com.google.android.material.card.MaterialCardView>
