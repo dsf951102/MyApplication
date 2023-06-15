@@ -5,45 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivityCalendar">
-
-
-    <com.google.android.material.appbar.MaterialToolbar
-
-        android:id="@+id/materialToolbar"
+    tools:context=".MainActivityCalendar"
+    >
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/work_control_plans_finance"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    <com.applikeysolutions.cosmocalendar.view.CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        android:theme="@style/Theme.MyApplication"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
-        app:nextMonthIconRes="@drawable/ic_chevron_right_gray"
-        app:orientation="horizontal"
-        app:previousMonthIconRes="@drawable/ic_chevron_left_gray"
-        app:selectionType="single"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+            android:orientation="vertical">
+            <com.google.android.material.appbar.MaterialToolbar
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/calendarView" />
+                android:id="@+id/materialToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/work_control_plans_finance"
+                />
+
+            <com.applikeysolutions.cosmocalendar.view.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                app:nextMonthIconRes="@drawable/ic_chevron_right_gray"
+                app:orientation="horizontal"
+                app:previousMonthIconRes="@drawable/ic_chevron_left_gray"
+                app:selectionType="single"
+
+                />
+
+            <TextView
+                android:id="@+id/text_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/calendarView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+
+                 />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include layout="@layout/bottom_sheet_layout"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -57,16 +78,7 @@
         app:srcCompat="@drawable/baseline_create_24"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_dashboard" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

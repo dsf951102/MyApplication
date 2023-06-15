@@ -26,8 +26,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cliente"
-                android:textSize="18sp"
-                android:layout_marginStart="8dp"/>
+                android:textSize="15sp"
+                android:layout_marginStart="8dp"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
 
             <LinearLayout

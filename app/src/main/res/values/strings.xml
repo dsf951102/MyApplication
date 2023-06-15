@@ -24,4 +24,5 @@
     <string name="evento_para">Evento para:</string>
     <string name="fecha">fecha</string>
     <string name="nombre">Nombre</string>
+    <string name="seleccione_la_hora">Seleccione la Hora</string>
 </resources>
