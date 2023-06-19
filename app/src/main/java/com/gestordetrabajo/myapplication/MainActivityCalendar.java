@@ -52,7 +52,7 @@ public class MainActivityCalendar extends AppCompatActivity {
 
     List<Day> days;
     private String fechaEscogida;
-    private Dialog dialog;
+
     private MyDB database;
     ConnectedDays connectedDays;
 
@@ -68,6 +68,8 @@ public class MainActivityCalendar extends AppCompatActivity {
         final TextView textView = binding.textDashboard;
         //Inicializacion del CalendarView
         CalendarView calendarView = binding.calendarView;
+        calendarView.setNextMonthIconRes(R.drawable.round_chevron_right_24);
+        calendarView.setPreviousMonthIconRes(R.drawable.round_chevron_left_24);
 
         final RecyclerView recyclerView = binding.recyclerview;
         View bottomSheet = findViewById(R.id.button_sheet);
@@ -76,39 +78,38 @@ public class MainActivityCalendar extends AppCompatActivity {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
 
+
         List<Event> item = getAllEvents();
+        List<Event> item2 = new ArrayList<>();
         List_Events_Adapter adapter = new List_Events_Adapter(getApplicationContext(), item);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         textView.setText(Formato(Calendar.getInstance().getTime().toString()));
-        calendarView.setNextMonthIconRes(R.drawable.round_chevron_right_24);
-        calendarView.setPreviousMonthIconRes(R.drawable.round_chevron_left_24);
+        eventIndicator(calendarView, item2);
 
-        calendarView.setSelectionManager(new SingleSelectionManager(new OnDaySelectedListener() {
-            @Override
-            public void onDaySelected() {
-                SimpleDateFormat dsf = new SimpleDateFormat("d MMMM yyyy", Locale.getDefault());
-                if (getAllEventsSelection(calendarView.getSelectedDays().get(0)).size() == 0) {
-                    recyclerView.setVisibility(View.GONE);
-                    textView.setText(dsf.format(calendarView.getSelectedDays().get(0).getCalendar().getTime()));
-                } else {
-                    recyclerView.setVisibility(View.VISIBLE);
-                    List<Event> item = getAllEventsSelection(calendarView.getSelectedDays().get(0));
-                    List_Events_Adapter adapter = new List_Events_Adapter(getApplicationContext(), item);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    recyclerView.setAdapter(adapter);
-                    textView.setText(dsf.format(calendarView.getSelectedDays().get(0).getCalendar().getTime()));
 
-                }
-
+        calendarView.setSelectionManager(new SingleSelectionManager(() -> {
+            SimpleDateFormat dsf = new SimpleDateFormat("d MMMM yyyy", Locale.getDefault());
+            if (getAllEventsSelection(calendarView.getSelectedDays().get(0)).size() == 0) {
+                recyclerView.setVisibility(View.GONE);
+                textView.setText(dsf.format(calendarView.getSelectedDays().get(0).getCalendar().getTime()));
+            } else {
+                recyclerView.setVisibility(View.VISIBLE);
+                List<Event> item1 = getAllEventsSelection(calendarView.getSelectedDays().get(0));
+                List_Events_Adapter adapter1 = new List_Events_Adapter(getApplicationContext(), item1);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                recyclerView.setAdapter(adapter1);
+                textView.setText(dsf.format(calendarView.getSelectedDays().get(0).getCalendar().getTime()));
 
             }
+
+
         }));
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
             @Override
             public void onClick(View view) {
@@ -117,10 +118,10 @@ public class MainActivityCalendar extends AppCompatActivity {
                 if (days.size() != 0) {
                     if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        bottomSheetBehavior.setDraggable(false);
                     }
                     MaterialButton btn_add = (MaterialButton) findViewById(R.id.btn_add_new_event);
                     MaterialButton btn_cancel = (MaterialButton) findViewById(R.id.btn_cancel_new_event);
-                    MaterialTextView textView = (MaterialTextView) findViewById(R.id.title_tv);
                     TextInputEditText textInputname = (TextInputEditText) findViewById(R.id.txt_edit_text);
                     Chip chipclock = (Chip) findViewById(R.id.chip_clock);
                     Chip chipfecha = (Chip) findViewById(R.id.chip_fecha_escogida);
@@ -128,71 +129,66 @@ public class MainActivityCalendar extends AppCompatActivity {
                     fechaEscogida = sdf.format(days.get(0).getCalendar().getTime());
                     chipfecha.setText(fechaEscogida);
 
-                    chipclock.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View view) {
-                            Calendar calendar = Calendar.getInstance();
-                            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                            int minute = calendar.get(Calendar.MINUTE);
+                    chipclock.setOnClickListener(view12 -> {
+                        Calendar calendar = Calendar.getInstance();
+                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minute = calendar.get(Calendar.MINUTE);
 
 
-                            TimePickerDialog pickerDialog = new TimePickerDialog(MainActivityCalendar.this,
-                                    new TimePickerDialog.OnTimeSetListener() {
-                                        @Override
-                                        public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                                            String am_pm = (hour >= 12) ? "pm" : "am";
-                                            String time = timePicker.getHour() + ":" + timePicker.getMinute() + " " + am_pm;
-                                            chipclock.setText(time);
-                                        }
-                                    }, hour, minute, false);
-                            pickerDialog.show();
+                        TimePickerDialog pickerDialog = new TimePickerDialog(MainActivityCalendar.this,
+                                new TimePickerDialog.OnTimeSetListener() {
+                                    @Override
+                                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                                        String am_pm = (hour >= 12) ? "pm" : "am";
+                                        String time = timePicker.getHour() + ":" + timePicker.getMinute() + " " + am_pm;
+                                        chipclock.setText(time);
+                                    }
+                                }, hour, minute, false);
+                        pickerDialog.show();
 
-                        }
                     });
                     btn_cancel.setOnClickListener(view1 ->
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN));
-                    btn_add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String name = Objects.requireNonNull(textInputname.getText()).toString();
-                            String hora = chipclock.getText().toString();
-                            String fecha = chipfecha.getText().toString();
-                            database = new MyDB(getApplicationContext());
-                            long result = database.insert(name, hora, fecha);
-                            if (result != -1) {
-                                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                                chipclock.setText(R.string.seleccione_la_hora);
-                                textInputname.getText().clear();
-                                Set<Long> daysmarked = new TreeSet<>();
-                                SimpleDateFormat dsf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                                String dateformat = dsf.format((calendarView.getSelectedDays().get(0).getCalendar().getTime()));
-                                Date date = null;
-                                try {
-                                    date = sdf.parse(dateformat);
+                    btn_add.setOnClickListener(view13 -> {
+                        String name = Objects.requireNonNull(textInputname.getText()).toString();
+                        String hora = chipclock.getText().toString();
+                        String fecha = chipfecha.getText().toString();
+                        database = new MyDB(getApplicationContext());
+                        long result = database.insert(name, hora, fecha);
+                        if (result != -1) {
+                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                            chipclock.setText(R.string.seleccione_la_hora);
+                            textInputname.getText().clear();
+                            Set<Long> daysmarked = new TreeSet<>();
+                            SimpleDateFormat dsf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                            String dateformat = dsf.format((calendarView.getSelectedDays().get(0).getCalendar().getTime()));
+                            Date date = null;
+                            try {
+                                date = sdf.parse(dateformat);
 
-                                    long timeInMillis = date.getTime();
-                                    daysmarked.add(timeInMillis);
-                                } catch (ParseException e) {
-                                    throw new RuntimeException(e);
-                                }
-                                connectedDays = new ConnectedDays(daysmarked, R.color.md_theme_light_onError, R.color.md_theme_dark_error);
-                                calendarView.addConnectedDays(connectedDays);
-                                calendarView.setConnectedDayIconRes(R.drawable.baseline_event_note_24);
-                                calendarView.setConnectedDayIconPosition(ConnectedDayIconPosition.BOTTOM);
-                                calendarView.update();
-
-                                List<Event> item = getAllEventsSelection(calendarView.getSelectedDays().get(0));
-                                List_Events_Adapter adapter = new List_Events_Adapter(getApplicationContext(), item);
-                                recyclerView.setHasFixedSize(true);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                                recyclerView.setAdapter(adapter);
-                            } else {
-                                Toast.makeText(MainActivityCalendar.this, "Datos no insertados.", Toast.LENGTH_SHORT).show();
+                                long timeInMillis = date.getTime();
+                                daysmarked.add(timeInMillis);
+                            } catch (ParseException e) {
+                                throw new RuntimeException(e);
                             }
+                            connectedDays = new ConnectedDays(daysmarked, R.color.md_theme_light_onError, R.color.md_theme_dark_error);
+                            calendarView.addConnectedDays(connectedDays);
+                            //calendarView.setConnectedDayIconRes(R.drawable.baseline_event_note_24);
+                            calendarView.setConnectedDayIconPosition(ConnectedDayIconPosition.BOTTOM);
+                            calendarView.update();
 
-
+                            List<Event> item12;
+                            item12 = getAllEventsSelection(calendarView.getSelectedDays().get(0));
+                            List_Events_Adapter adapter12 = new List_Events_Adapter(getApplicationContext(), item12);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            recyclerView.setAdapter(adapter12);
+                            recyclerView.setVisibility(RecyclerView.VISIBLE);
+                        } else {
+                            Toast.makeText(MainActivityCalendar.this, "Datos no insertados.", Toast.LENGTH_SHORT).show();
                         }
+
+
                     });
                 } else {
                     Toast.makeText(MainActivityCalendar.this, "Selecione una fecha.", Toast.LENGTH_SHORT)
@@ -205,6 +201,7 @@ public class MainActivityCalendar extends AppCompatActivity {
 
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -287,6 +284,50 @@ public class MainActivityCalendar extends AppCompatActivity {
             Toast.makeText(this, "No existen eventos programados", Toast.LENGTH_SHORT).show();
         }
         return events;
+    }
+    private void eventIndicator(CalendarView calendarView, List<Event> events) {
+        MyDB db = new MyDB(getApplicationContext());
+        Cursor cursor = db.readData();
+            if (cursor != null && cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+
+                    events.add(new Event(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+                }
+
+            }
+        if (events.size()>0){
+
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            List<ConnectedDays> connectedDaysList = new ArrayList<>();
+            Set<Long> daysmarked = new TreeSet<>();
+
+            Date date = null;
+            int cont = 0;
+            while (cont < events.size()-1){
+                try {
+                    //String dateformat = format.format(events.get(cont).fecha);
+                    date = format.parse(events.get(cont).fecha);
+                    long timeInMillis = date.getTime();
+                    daysmarked.add(timeInMillis);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                ConnectedDays connectedDays = new ConnectedDays(daysmarked, R.color.md_theme_light_onErrorContainer, R.color.md_theme_dark_primaryContainer);
+                connectedDaysList.add(connectedDays);
+
+                cont ++;
+
+                }
+
+            for (int i = 0; i < connectedDaysList.size(); i++){
+                calendarView.addConnectedDays(connectedDaysList.get(i));
+                //calendarView.setConnectedDayIconRes(R.drawable.baseline_event_note_24);
+                //calendarView.setConnectedDayIconPosition(ConnectedDayIconPosition.BOTTOM);
+                calendarView.update();
+            }
+            }
+
+
     }
 
 

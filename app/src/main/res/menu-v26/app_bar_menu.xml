@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/finace"
@@ -10,15 +8,13 @@
         android:title="@string/finanza"
         android:contentDescription="@string/presione_para_ir_a_la_pantalla_de_gesti_n_de_las_finazas"
         app:showAsAction="ifRoom"
-        android:iconTint="@color/md_theme_dark_errorContainer"
-        />
+        android:iconTint="@color/md_theme_dark_errorContainer"/>
 
     <item
         android:id="@+id/info"
         android:icon="@drawable/baseline_info_24"
         android:title="@string/acerca"
         android:contentDescription="@string/presione_para_ver_informacion_sobre_la_app"
-        app:showAsAction="ifRoom"
-        android:iconTint="@color/md_theme_dark_errorContainer"/>
+        app:showAsAction="ifRoom"/>
 
 </menu>

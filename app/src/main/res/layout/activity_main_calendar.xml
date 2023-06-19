@@ -37,6 +37,7 @@
                 app:previousMonthIconRes="@drawable/ic_chevron_left_gray"
                 app:selectionType="single"
 
+
                 />
 
             <TextView
