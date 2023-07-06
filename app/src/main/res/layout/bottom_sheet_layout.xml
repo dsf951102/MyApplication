@@ -51,11 +51,13 @@
                 app:startIconDrawable="@drawable/baseline_person_outline_24"
                 app:startIconContentDescription="@string/presione_para_escribir_el_nombre_de_la_persona"
                 android:hint="@string/nombre"
+                app:errorEnabled="true"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.chip.Chip
                 style="@style/Widget.Material3.Chip.Assist"

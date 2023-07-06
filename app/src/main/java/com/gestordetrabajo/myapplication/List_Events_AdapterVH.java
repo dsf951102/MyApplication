@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.applikeysolutions.cosmocalendar.settings.lists.connected_days.ConnectedDays;
 import com.gestordetrabajo.myapplication.databinding.ActivityMainCalendarBinding;
 import com.gestordetrabajo.myapplication.db.MyDB;
 
@@ -28,9 +29,7 @@ public class List_Events_AdapterVH extends RecyclerView.ViewHolder {
      this.context =context;
 
         name = itemView.findViewById(R.id.cliente_tv_name);
-        itemView.findViewById(R.id.btn_modificar_trabajo).setOnClickListener(view -> {
 
-        });
         itemView.findViewById(R.id.btn_eliminar_trabajo).setOnClickListener(view -> {
             database = new MyDB(this.context);
             AlertDialog.Builder dialog = new AlertDialog.Builder(itemView.getContext());
@@ -43,6 +42,9 @@ public class List_Events_AdapterVH extends RecyclerView.ViewHolder {
                 adapter.items.remove(getBindingAdapterPosition());
                 adapter.notifyItemRemoved(getBindingAdapterPosition());
                 database.deleteData(id);
+
+
+
             }).setNegativeButton("Cancelar", (dialogInterface, i) -> {
 
             });

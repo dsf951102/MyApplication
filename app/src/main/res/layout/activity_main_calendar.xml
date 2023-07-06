@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:padding="10dp"
     tools:context=".MainActivityCalendar"
     >
     <androidx.core.widget.NestedScrollView
@@ -17,8 +18,7 @@
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:orientation="vertical">
+             android:orientation="vertical">
             <com.google.android.material.appbar.MaterialToolbar
 
                 android:id="@+id/materialToolbar"
@@ -26,27 +26,31 @@
                 android:layout_height="wrap_content"
                 app:title="@string/work_control_plans_finance"
                 />
-
-            <com.applikeysolutions.cosmocalendar.view.CalendarView
-                android:id="@+id/calendarView"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                app:nextMonthIconRes="@drawable/ic_chevron_right_gray"
-                app:orientation="horizontal"
-                app:previousMonthIconRes="@drawable/ic_chevron_left_gray"
-                app:selectionType="single"
+                android:id="@+id/cardCalendar"
+                android:elevation="3dp"
+                app:cardCornerRadius="6dp"
+                style="@style/Widget.MaterialComponents.CardView">
+                <com.applikeysolutions.cosmocalendar.view.CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    app:nextMonthIconRes="@drawable/ic_chevron_right_gray"
+                    app:orientation="horizontal"
+                    app:previousMonthIconRes="@drawable/ic_chevron_left_gray"
+                    app:selectionType="single" />
+            </com.google.android.material.card.MaterialCardView>
 
 
-                />
 
             <TextView
                 android:id="@+id/text_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
+                android:padding="10dp"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/calendarView" />
@@ -54,11 +58,7 @@
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
-
-                 />
+                />
 
 
         </LinearLayout>
