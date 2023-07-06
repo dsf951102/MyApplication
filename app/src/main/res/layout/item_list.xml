@@ -42,22 +42,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_modificar_trabajo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    style="?attr/borderlessButtonStyle"
-                    android:text="Modificar"
-                    />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_eliminar_trabajo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_gravity=""
                     style="?attr/borderlessButtonStyle"
-                    android:text="Eliminar"/>
+                    android:text="Eliminar"
+                    />
 
 
             </LinearLayout>
